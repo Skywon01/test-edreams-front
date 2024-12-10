@@ -7,6 +7,7 @@
     <p>{{ tache.statut }}</p>
     <p>{{ tache.description }}</p>
   </nz-card>
+<!-- Bouton du popup  -->
   <ng-template #extraTemplate>
     <a nz-button
        nz-popover
@@ -14,6 +15,7 @@
        [nzPopoverContent]="contentTemplate"
        nzPopoverPlacement="right"><strong>⁝</strong></a>
   </ng-template>
+<!-- Popup actions d'une tâche -->
   <ng-template #contentTemplate>
     <div class="popup">
       <a (click)="editTache(tache)">Modifier</a>

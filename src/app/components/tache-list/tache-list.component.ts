@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {Tache} from "../../model/tache/tache.component";
 import {TacheService} from "../../services/tache.service";
 import {NgClass} from "@angular/common";
@@ -22,7 +22,7 @@ import { EventEmitter } from '@angular/core';
 })
 export class TacheListComponent implements OnInit {
   @Output() editRequested: EventEmitter<Tache> = new EventEmitter<Tache>();
-taches: Tache[] =  [];
+@Input() taches: Tache[] =  [];
 constructor(private tacheService: TacheService) { }
   ngOnInit(): void {
     this.tacheService.getTaches().subscribe({

@@ -34,12 +34,20 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.loadTaches();
   }
+
+  /**
+   * Charge les tâches
+   */
   loadTaches(): void {
     this.tacheService.getTaches().subscribe({
       next: (data) => (this.taches = data),
       error: (err) => console.error('Erreur lors du chargement des tâches :', err),
     });
   }
+
+  /**
+   * Formulaire d'ajout ou de modification d'une tâche
+   */
   submitForm(): void {
     if (this.taskForm.valid) {
       if (this.selectedTask) {
@@ -48,9 +56,10 @@ export class AppComponent implements OnInit {
           next: (response) => {
             console.log('Tâche mise à jour avec succès :', response);
             alert('Tâche mise à jour !');
+            // Mets à jour la tâche modifiée dans la liste
             this.taches = this.taches.map(tache =>
               tache.id === response.id ? response : tache
-            ); // Met à jour la tâche dans la liste
+            );
             this.resetForm();
           },
           error: (err) => {
@@ -64,7 +73,8 @@ export class AppComponent implements OnInit {
           next: (response) => {
             console.log('Tâche ajoutée avec succès :', response);
             alert('Tâche ajoutée !');
-            this.taches.push(response); // Ajoute la nouvelle tâche à la liste
+            // Ajoute directement la tâche à la liste
+            this.taches.push(response);
             this.resetForm();
           },
           error: (err) => {
@@ -77,6 +87,7 @@ export class AppComponent implements OnInit {
       console.log('Le formulaire est invalide.');
     }
   }
+
 
   resetForm(): void {
     // Réinitialise le formulaire

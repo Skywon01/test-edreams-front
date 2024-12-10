@@ -1,5 +1,4 @@
-
-<app-tache-list (editRequested)="onEditRequested($event)"></app-tache-list>
+<app-tache-list [taches]="taches" (editRequested)="onEditRequested($event)"></app-tache-list>
 <div class="add-container">
 
 <button (click)="add_task = !add_task" nz-button nzType="primary" >Ajouter une tâche</button>
