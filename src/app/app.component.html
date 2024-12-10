@@ -1,0 +1,47 @@
+
+<app-tache-list (editRequested)="onEditRequested($event)"></app-tache-list>
+<div class="add-container">
+
+<button (click)="add_task = !add_task" nz-button nzType="primary" >Ajouter une tâche</button>
+</div>
+@if(add_task){
+
+<form nz-form [formGroup]="taskForm" (ngSubmit)="submitForm()" class="add-form">
+  <h3>{{ selectedTask ? 'Modifier une tâche' : 'Ajouter une tâche' }}</h3>
+  <nz-form-item>
+    <nz-form-label [nzFor]="'titre'" nzRequired>Titre</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="titre" id="titre" placeholder="Titre de la tâche" />
+      <div *ngIf="taskForm.get('titre')?.invalid && taskForm.get('titre')?.touched">
+        <small style="color: red;">Le titre est obligatoire.</small>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzFor]="'description'">Description</nz-form-label>
+    <nz-form-control>
+      <textarea nz-input formControlName="description" id="description" placeholder="Description de la tâche"></textarea>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzFor]="'statut'" nzRequired>Statut</nz-form-label>
+    <nz-form-control>
+      <nz-select formControlName="statut" id="statut">
+        <nz-option nzValue="à faire" nzLabel="À faire"></nz-option>
+        <nz-option nzValue="en cours" nzLabel="En cours"></nz-option>
+        <nz-option nzValue="fait" nzLabel="Terminé"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control>
+      <button nz-button nzType="primary" [disabled]="taskForm.invalid">Ajouter la tâche</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+}
+
+

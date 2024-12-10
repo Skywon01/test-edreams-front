@@ -1,0 +1,24 @@
+<h1 class="task-title">Liste des tâches</h1>
+<div class="task-card">
+@for (tache of taches; track taches) {
+
+
+  <nz-card style="width:300px;" [ngClass]="getStatusClass(tache)" nzTitle="{{ tache.titre }}" [nzExtra]="extraTemplate">
+    <p>{{ tache.statut }}</p>
+    <p>{{ tache.description }}</p>
+  </nz-card>
+  <ng-template #extraTemplate>
+    <a nz-button
+       nz-popover
+
+       [nzPopoverContent]="contentTemplate"
+       nzPopoverPlacement="right"><strong>⁝</strong></a>
+  </ng-template>
+  <ng-template #contentTemplate>
+    <div class="popup">
+      <a (click)="editTache(tache)">Modifier</a>
+      <a (click)="deleteTache(tache.id)" class="popup-delete">Supprimer</a>
+    </div>
+  </ng-template>
+}
+</div>

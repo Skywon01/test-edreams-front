@@ -1,0 +1,38 @@
+.task-title{
+  text-align: center;
+}
+
+.task-card{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  row-gap: 24px;
+}
+
+.status-fait {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.status-en-cours {
+  background-color: #cce5ff;
+  border-color: #b8daff;
+  color: #004085;
+}
+
+.status-a-faire {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-delete {
+  color: #b60000;
+}
