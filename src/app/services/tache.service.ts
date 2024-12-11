@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class TacheService {
-  private apiUrl = 'http://localhost:8000';
+  private apiUrl = 'https://localhost:8000';
 
   constructor(private http: HttpClient) { }
 
