@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class TacheService {
-  private apiUrl = 'https://localhost:8000';
+  private apiUrl = 'https://test-edreams-back-7332a18be8ae.herokuapp.com';
 
   constructor(private http: HttpClient) { }
 
