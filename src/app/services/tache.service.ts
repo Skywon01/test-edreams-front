@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Tache } from '../model/tache/tache.component';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -8,6 +8,10 @@ import {Observable} from "rxjs";
 })
 export class TacheService {
   private apiUrl = 'https://test-edreams-back-7332a18be8ae.herokuapp.com';
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })}
 
   constructor(private http: HttpClient) { }
 
@@ -15,7 +19,7 @@ export class TacheService {
    * Récupère les tâches
    */
   getTaches(): Observable<Tache[]> {
-    return this.http.get<Tache[]>(`${this.apiUrl}/taches`, { withCredentials: true });
+    return this.http.get<Tache[]>(`${this.apiUrl}/taches`, this.httpOptions);
   }
 
   /**
@@ -23,7 +27,7 @@ export class TacheService {
    * @param id
    */
   getTache(id: number): Observable<Tache> {
-    return this.http.get<Tache>(`${this.apiUrl}/${id}`, { withCredentials: true });
+    return this.http.get<Tache>(`${this.apiUrl}/${id}`, this.httpOptions);
   }
 
   /**
@@ -32,7 +36,7 @@ export class TacheService {
    */
 
   createTache(Tache: Tache): Observable<Tache> {
-    return this.http.post<Tache>(`${this.apiUrl}/taches`, Tache, { withCredentials: true });
+    return this.http.post<Tache>(`${this.apiUrl}/taches`, Tache, this.httpOptions);
   }
 
   /**
@@ -41,7 +45,7 @@ export class TacheService {
    * @param tache
    */
   updateTache(id: number | undefined, tache: Partial<Tache>): Observable<Tache> {
-    return this.http.put<Tache>(`${this.apiUrl}/taches/${id}`, tache, { withCredentials: true });
+    return this.http.put<Tache>(`${this.apiUrl}/taches/${id}`, tache, this.httpOptions);
   }
 
   /**
@@ -49,6 +53,6 @@ export class TacheService {
    * @param id
    */
   deleteTache(id: number | undefined): Observable<Tache> {
-    return this.http.delete<Tache>(`${this.apiUrl}/taches/${id}`, { withCredentials: true });
+    return this.http.delete<Tache>(`${this.apiUrl}/taches/${id}`, this.httpOptions);
   }
 }
